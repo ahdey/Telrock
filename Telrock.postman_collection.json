@@ -1,0 +1,238 @@
+{
+	"info": {
+		"name": "Telrock",
+		"_postman_id": "e6bc0a8e-bcfd-ede3-4120-aa910ac583f2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"description": "",
+			"item": [
+				{
+					"name": "Login Successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a057850d-cc39-4489-bf25-bfe2451e2048",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Telrock = jsonData.data;",
+									"",
+									"tests[\"Content-Type is json\"] =postman.getResponseHeader (\"Content-type\").indexOf (\"application/json\") !== -1;",
+									"",
+									"//tests[\"Expected httpCode = 200\" + \" \" + \"& Actual httpCode = \" +jsonData.httpCode] = jsonData.httpCode === \"200\" ;// I don't know the method to validate the response code & message because they were not written in the response body",
+									"",
+									"//tests[\"Expected idvProcess = idv.question.mobile\" + \" \" + \"& Actual idvProcess = \" + jsonData[0].id]  = jsonData[0].id === \"idv.question.mobile\";",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Mobile number",
+								"value": "114044885347",
+								"disabled": true
+							},
+							{
+								"key": "Date of Birth",
+								"value": "01/01/1971",
+								"disabled": true
+							},
+							{
+								"key": "Postal Code",
+								"value": "EC88AB",
+								"disabled": true
+							},
+							{
+								"key": "Reference Number",
+								"value": "9090808",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\n\n{\"idvQuestionVO\":{\"id\":1},\"answer\":\"114044885347\"},\n\n{\"idvQuestionVO\":{\"id\":2},\"answer\":\"01-01-1971\"},\n\n{\"idvQuestionVO\":{\"id\":3},\"answer\":\"EC88AB\"},\n\n{\"idvQuestionVO\":{\"id\":4},\"answer\":\"9090808\"}\n\n\n]"
+						},
+						"url": {
+							"raw": "https://usdemo-uat.telrock.com/telrock-tas-war/rest/idv/process",
+							"protocol": "https",
+							"host": [
+								"usdemo-uat",
+								"telrock",
+								"com"
+							],
+							"path": [
+								"telrock-tas-war",
+								"rest",
+								"idv",
+								"process"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Not all answers present on the login request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "864c1bb1-89aa-4206-82aa-304e8f8af632",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Telrock = jsonData.data;",
+									"",
+									"tests[\"Content-Type is json\"] =postman.getResponseHeader (\"Content-type\").indexOf (\"application/json\") !== -1;",
+									"",
+									"//tests[\"Expected httpCode = 200\" + \" \" + \"& Actual httpCode = \" +jsonData.httpCode] = jsonData.httpCode === \"200\" ;// I don't know the method to validate the response code & message because they were not written in the response body",
+									"",
+									"//tests[\"Expected idvProcess = idv.question.mobile\" + \" \" + \"& Actual idvProcess = \" + jsonData[0].id]  = jsonData[0].id === \"idv.question.mobile\";",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Mobile number",
+								"value": "114044885347",
+								"disabled": true
+							},
+							{
+								"key": "Date of Birth",
+								"value": "01/01/1971",
+								"disabled": true
+							},
+							{
+								"key": "Postal Code",
+								"value": "EC88AB",
+								"disabled": true
+							},
+							{
+								"key": "Reference Number",
+								"value": "9090808",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\n\n{\"idvQuestionVO\":{\"id\":1},\"answer\":\"\"},\n\n{\"idvQuestionVO\":{\"id\":2},\"answer\":\"01-01-1971\"},\n\n{\"idvQuestionVO\":{\"id\":3},\"answer\":\"EC88AB\"},\n\n{\"idvQuestionVO\":{\"id\":4},\"answer\":\"\"}\n\n\n]"
+						},
+						"url": {
+							"raw": "https://usdemo-uat.telrock.com/telrock-tas-war/rest/idv/process",
+							"protocol": "https",
+							"host": [
+								"usdemo-uat",
+								"telrock",
+								"com"
+							],
+							"path": [
+								"telrock-tas-war",
+								"rest",
+								"idv",
+								"process"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Postal Code supplied",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "864c1bb1-89aa-4206-82aa-304e8f8af632",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var Telrock = jsonData.data;",
+									"",
+									"tests[\"Content-Type is json\"] =postman.getResponseHeader (\"Content-type\").indexOf (\"application/json\") !== -1;",
+									"",
+									"//tests[\"Expected httpCode = 200\" + \" \" + \"& Actual httpCode = \" +jsonData.httpCode] = jsonData.httpCode === \"200\" ;// I don't know the method to validate the response code & message because they were not written in the response body",
+									"",
+									"//tests[\"Expected idvProcess = idv.question.mobile\" + \" \" + \"& Actual idvProcess = \" + jsonData[0].id]  = jsonData[0].id === \"idv.question.mobile\";",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Mobile number",
+								"value": "114044885347",
+								"disabled": true
+							},
+							{
+								"key": "Date of Birth",
+								"value": "01/01/1971",
+								"disabled": true
+							},
+							{
+								"key": "Postal Code",
+								"value": "EC88AB",
+								"disabled": true
+							},
+							{
+								"key": "Reference Number",
+								"value": "9090808",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\n\n{\"idvQuestionVO\":{\"id\":1},\"answer\":\"114044885347\"},\n\n{\"idvQuestionVO\":{\"id\":2},\"answer\":\"01-01-1971\"},\n\n{\"idvQuestionVO\":{\"id\":3},\"answer\":\"qqqqqqqEC88AB\"},\n\n{\"idvQuestionVO\":{\"id\":4},\"answer\":\"9090808\"}\n\n\n]"
+						},
+						"url": {
+							"raw": "https://usdemo-uat.telrock.com/telrock-tas-war/rest/idv/process",
+							"protocol": "https",
+							"host": [
+								"usdemo-uat",
+								"telrock",
+								"com"
+							],
+							"path": [
+								"telrock-tas-war",
+								"rest",
+								"idv",
+								"process"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
